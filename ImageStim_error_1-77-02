@@ -1,0 +1,77 @@
+rom __future__ import division  
+import psychopy
+from psychopy import visual, monitors, core, clock, prefs, data, event, logging, gui, constants
+from psychopy.constants import * 
+import pyglet
+import random
+from random import choice
+import time
+from numpy import sin, cos, tan, log, log10, pi, average, sqrt, std, deg2rad, rad2deg, linspace, asarray
+from numpy.random import random, randint, normal, shuffle
+import copy
+import os  
+import psychopy.info #for information about the system
+
+win = visual.Window(size=(800, 600), winType='pyglet',fullscr=False, screen=0, allowGUI=True,
+    monitor='testMonitor', units="cm",color=[-1.000,-1.000,-1.000], colorSpace='rgb')
+    
+instr2Clock=core.Clock()
+
+    
+instr2_rotatingjpg=visual.ImageStim(win=win,name='instr2_rotatingjpg',
+    image='/Users/gazzlab/Desktop/IDv2_EEG/targetImages/009.jpg', mask=None,
+    ori=90, pos=[0,-5], size=None,
+    color=[1,1,1], colorSpace='rgb', opacity=1,
+    texRes=128, interpolate=False, depth=0)
+    
+globalClock=core.Clock()
+routineTimer=core.CountdownTimer()    
+    
+t=0; instr2Clock.reset()  
+frameN=-1
+
+
+instr2Components=[]
+instr2Components.append(instr2_rotatingjpg)
+
+
+for thisComponent in instr2Components:
+    if hasattr(thisComponent,'status'): thisComponent.status = NOT_STARTED
+    
+continueRoutine=True
+while continueRoutine:
+    #get current time
+    t=instr2Clock.getTime()
+    frameN=frameN+1
+    
+    if t>=0.0 and instr2_rotatingjpg.status==NOT_STARTED:
+        #keep track of start time/frame for later
+        instr2_rotatingjpg.tStart=t
+        instr2_rotatingjpg.frameNStart=frameN
+        instr2_rotatingjpg.setAutoDraw(True)
+    if t>=5.0:
+        instr2_rotatingjpg.setAutoDraw(False)
+        continueRoutine=False
+
+    if not continueRoutine: #a component has requested that we end
+        routineTimer.reset() 
+        break
+    continueRoutine=False
+    for thisComponent in instr2Components:
+        if hasattr(thisComponent,"status") and thisComponent.status!=FINISHED:
+            continueRoutine=True; break
+    if event.getKeys(["escape"]):
+        core.quit()
+            
+    if continueRoutine:
+        win.flip()
+
+for thisComponent in instr2Components:
+    if hasattr(thisComponent,"setAutoDraw"): thisComponent.setAutoDraw(False) 
+event.clearEvents      
+win.close() 
+
+if event.getKeys(["escape"]):
+    core.quit()
+    
+core.quit()
