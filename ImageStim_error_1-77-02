@@ -1,4 +1,4 @@
-rom __future__ import division  
+from __future__ import division  
 import psychopy
 from psychopy import visual, monitors, core, clock, prefs, data, event, logging, gui, constants
 from psychopy.constants import * 
